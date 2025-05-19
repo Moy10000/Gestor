@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 
+// Usa la variable de entorno del .env
 const API_URL = import.meta.env.VITE_API_URL + "/api";
 
 const loginUser = async (email, password) => {
@@ -141,7 +142,7 @@ const sendPasswordResetEmail = async (email) => {
     throw error;
   }
 };
-
+  
 const resetPassword = async (newPassword, token) => {
   try {
     const url = `${API_URL}/auth/reset-password`;

@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 
+// Usa la variable de entorno del .env
 const API_URL = import.meta.env.VITE_API_URL + "/api";
 
 const uploadDocument = async ({

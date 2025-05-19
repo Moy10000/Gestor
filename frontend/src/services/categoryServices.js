@@ -1,12 +1,9 @@
 import Cookies from "js-cookie";
 
-// Usa la variable de entorno del .env
-const API_URL = import.meta.env.VITE_API_URL + "/api";
-
 const getCategories = async () => {
   try {
     const token = Cookies.get("token");
-    const response = await fetch(`${API_URL}/perCat`, {
+    const response = await fetch("http://localhost:5000/api/perCat", {
       headers: {
         Authorization: token,
       },
@@ -23,7 +20,7 @@ const getCategories = async () => {
 const getCategoryById = async (id) => {
   try {
     const token = Cookies.get("token");
-    const response = await fetch(`${API_URL}/perCat/${id}`, {
+    const response = await fetch(`http://localhost:5000/api/perCat/${id}`, {
       headers: {
         Authorization: token,
       },
@@ -39,7 +36,7 @@ const getCategoryById = async (id) => {
 
 const createCategory = async ({ nombre, propiedades, propiedadesTipo, propiedadesObligatorias }) => {
   try {
-    const url = `${API_URL}/perCat`;
+    const url = "http://localhost:5000/api/perCat";
     const token = Cookies.get("token");
 
     const payload = {
@@ -74,7 +71,7 @@ const createCategory = async ({ nombre, propiedades, propiedadesTipo, propiedade
 const existsCategoryName = async (nombre) => {
   try {
     const token = Cookies.get("token");
-    const response = await fetch(`${API_URL}/perCat/exists/${encodeURIComponent(nombre)}`, {
+    const response = await fetch(`http://localhost:5000/api/perCat/exists/${encodeURIComponent(nombre)}`, {
       headers: {
         Authorization: token,
       },
@@ -91,7 +88,7 @@ const existsCategoryName = async (nombre) => {
 const getRubroById = async (id) => {
   try {
     const token = Cookies.get("token");
-    const response = await fetch(`${API_URL}/perCat/${id}`, {
+    const response = await fetch(`http://localhost:5000/api/perCat/${id}`, {
       headers: {
         Authorization: token,
       },
@@ -124,10 +121,10 @@ const updateCategory = async (id, { nombre, propiedades, propiedadesTipo, propie
       nombre,
       propiedades,
       propiedadtipo: propiedadesTipo,
-      propiedadobligatorio: propiedadesObligatorias,
+      propiedadesobligatorio: propiedadesObligatorias,
     };
 
-    const response = await fetch(`${API_URL}/perCat/${id}`, {
+    const response = await fetch(`http://localhost:5000/api/perCat/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -149,10 +146,11 @@ const updateCategory = async (id, { nombre, propiedades, propiedadesTipo, propie
   }
 };
 
+
 const deleteCategory = async (id) => {
   try {
     const token = Cookies.get("token");
-    const response = await fetch(`${API_URL}/perCat/${id}`, {
+    const response = await fetch(`http://localhost:5000/api/perCat/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: token,

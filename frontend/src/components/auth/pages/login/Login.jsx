@@ -82,17 +82,17 @@ const Login = () => {
               />
             </div>
 
-            <div className="submit-container">
-              <button className="submit first-button">Iniciar sesión</button>
+            <div className="oldsubmit-container">
+              <button className="oldsubmit first-button">Iniciar sesión</button>
 
-              <Link to="/register" className="submit second-button">
+              <Link to="/register" className="oldsubmit second-button">
                 Registrarse
               </Link>
             </div>
 
             <div className="forgot-password">
               ¿Olvidaste la contraseña? <br />
-              <span>Haz click aquí</span>
+              <Link to="/forgot-password">Haz click aquí</Link>
             </div>
           </form>
         </div>

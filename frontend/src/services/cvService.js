@@ -1,13 +1,10 @@
 import Cookies from "js-cookie";
 
-// Usa la variable de entorno del .env
-const API_URL = import.meta.env.VITE_API_URL + "/api";
-
 const generateRubroPDF = async (ids) => {
   try {
     const token = Cookies.get("token");
 
-    const response = await fetch(`${API_URL}/cv/generate`, {
+    const response = await fetch("http://localhost:5000/api/cv/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

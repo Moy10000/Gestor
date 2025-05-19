@@ -1,0 +1,234 @@
+.documents-modal-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.documents-modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 635px;
+    height: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: relative;  
+}
+
+.documents-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.documents-top h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.dropbox-category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropbox-category p {
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.dropbox-category select {
+    padding: 5px;
+    border: 1px solid #335C94;
+    color: #000;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.top-icons .helpicon,
+.top-icons .closemodal {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Iconos */
+.helpicon,
+.closemodal {
+    color: #464646;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.helpicon:hover {
+    color: #335C94;
+    transform: scale(1.1);
+}
+
+.closemodal:hover {
+    color: red;
+    transform: scale(1.1);
+}
+
+.documents-underline {
+    width: 100%;
+    height: 2px;
+    background-color: #464646;
+    margin: 10px 0 20px;
+}
+
+.newdocument-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+.newdocuments-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 85px;
+    height: 45px;
+    border: none;
+    background: #335C94;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.upload-button {
+    text-align: left;
+    margin: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+/* Hover para el botón */
+.newdocuments-button:hover {
+    background-color: #1e4a9a;
+}
+
+.documents-name,
+.documents-date {
+    display: flex;
+    margin: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.documents-name p,
+.documents-date p {
+    margin: 12px;
+}
+
+.documents-name span,
+.documents-date span {
+    position: relative;
+    width: 580px;
+    height: 35px;
+    background: #FFFFFF;
+    border: 1px solid #335C94;
+    font-size: 16px;
+    transition: all .4s ease-in-out;
+}
+
+.input-name,
+.documents-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.input-name:hover,
+.documents-input:hover {
+    border-color: #335c94;
+}
+
+.documents-input {
+    font-size: 14px;
+}
+
+.save-moving {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+}
+
+.save-documents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 45px;
+    width: 120px;
+    height: 45px;
+    border: none;
+    background: #335C94;
+    color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 5px;
+
+    transition: .5s, color .10s;
+        -webkit-transition: .5s,color .10s;
+        -moz-transition: .5s, color .10s;
+}
+
+.save-documents:hover {
+    background-color: #1e4a9a;
+
+    transform: translate(0px,3px);
+        -webkit-transform: translate(0px, 3px);
+        -moz-transform: translate(0px,3px);
+}
+
+.error {
+    color: red;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.input-error {
+    border: 1px solid red !important;
+}
+
+.input-error-text {
+    color: red !important;
+}
+
+
+.show-document{
+    position: relative;
+    top: 5%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 20px;
+   
+    cursor: pointer;
+    color: #335C94;
+    background: #FFFFFF;
+    border-radius: 50%;
+    border: none;
+}
+
+.show-document:hover{
+    color: #254975;
+}

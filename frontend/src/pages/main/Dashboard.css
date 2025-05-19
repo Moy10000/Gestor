@@ -1,0 +1,456 @@
+/* Ocupa todo el alto y ancho sin scroll */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-rows: 60px 1fr; /* Top fijo de 60px */
+  grid-template-columns: 300px 1fr; /* Sidebar fijo de 220px */
+  grid-template-areas:
+    "top top"
+    "sidebar main";
+  height: 100vh;
+  width: 100vw;
+  font-family: Arial, sans-serif;
+}
+
+/* Área del Top */
+header {
+  grid-area: top;
+  z-index: 10;
+}
+
+/* Área del Sidebar */
+aside {
+  grid-area: sidebar;
+  background-color: #f8fafc;
+  border-right: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+/* Contenido principal */
+.dashboard-main {
+  grid-area: main;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Tabla de ejemplo */
+.dashboard-main table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  table-layout: auto; 
+}
+
+.dashboard-main th,
+.dashboard-main td {
+  padding: 6px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+}
+
+/* Estilos de paginacion */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 12px;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.pagination button {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Aplica proporciones fijas a columnas */
+.dashboard-main table th:nth-child(1),
+.dashboard-main table td:nth-child(1) {
+  width: 5%; /* Nombre */
+}
+.dashboard-main table th:nth-child(2),
+.dashboard-main table td:nth-child(2) {
+  width: 40%; /* Nombre */
+}
+
+.dashboard-main table th:nth-child(3),
+.dashboard-main table td:nth-child(3) {
+  width: 40%; /* Rubro */
+}
+
+.dashboard-main table th:nth-child(4),
+.dashboard-main table td:nth-child(4) {
+  width: 15%; /* Fecha */
+}
+
+.dashboard-main table th:nth-child(5),
+.dashboard-main table td:nth-child(5) {
+  width: 5%;
+}
+
+/* Añadir cursor pointer y efecto hover a los encabezados */
+.dashboard-main th {
+  padding: 10px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover con fondo muy suave */
+.dashboard-main th:hover {
+  background-color: #f0f4f8;
+}
+/* Hover para toda la fila */
+.dashboard-main tbody tr:hover {
+  background-color: #1e4a9a;
+  color: white; 
+  cursor: pointer;
+  outline: none; 
+}
+
+.dashboard-main tbody tr:hover td:last-child {
+  background-color: white;
+}
+
+.dashboard-main tbody td:last-child:hover {
+  background-color: #f0f4f8; 
+  cursor: pointer;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.boton-descargar {
+  background-color: white; 
+  border: none;
+  padding: 6px 10px; 
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+.icono-descargar {
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  padding: 7px;
+}
+
+.icono-descargar:hover {
+  color: #1e4a9a; 
+  transform: scale(1.5); 
+}
+
+.boton-descargar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none; 
+  background-color: white;
+  border: none;
+}
+
+.boton-descargar:disabled .icono-descargar {
+  color: gray;
+  transform: none; 
+}
+
+.boton-descargar:not(:disabled):hover .icono-descargar {
+  color: #1e4a9a;
+  transform: scale(1.5);
+}
+
+.boton-refrescar {
+  background-color: transparent;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.icono-refrescar {
+  color: #1e4a9a;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.boton-refrescar:hover {
+  background-color: #F0F4F8;
+}
+.boton-refrescar:hover .icono-refrescar {
+  transform: rotate(180deg) scale(1.3);
+}
+
+/* Checkbox */
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fila-seleccionada {
+  background-color: #1e4a9a !important;
+  color: white;
+}
+
+.fila-seleccionada td:last-child {
+  background-color: white;
+}
+
+.fila-seleccionada td:last-child:hover {
+  background-color: #f0f4f8;
+}
+
+.fila-marcada-checkbox {
+  background-color: #d0e3ff !important; /* Azul claro */
+  color: #1e4a9a;
+}
+
+.fila-marcada-checkbox td:last-child {
+  background-color: white;
+}
+
+.fila-marcada-checkbox td:last-child:hover {
+  background-color: #f0f4f8;
+}
+
+/* Controles de vista */
+.view-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.view-toggle {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.3s ease;
+}
+
+.view-toggle:hover {
+  background: #f8fafc;
+  color: #1e4a9a;
+}
+
+.view-toggle.active {
+  background: #1e4a9a;
+  color: white;
+  border-color: #1e4a9a;
+}
+
+/* Vista de tarjetas */
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.document-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.document-card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.document-card.marked {
+  background-color: #d0e3ff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-download-btn {
+  background: transparent;
+  border: none;
+  color: #1e4a9a;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.card-download-btn:hover {
+  background: #f0f7ff;
+  transform: scale(1.1);
+}
+
+.card-download-btn:disabled {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.card-category {
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #1e4a9a;
+}
+
+.card-date {
+  color: #94a3b8;
+}
+
+.no-documents {
+  text-align: center;
+  color: #64748b;
+  grid-column: 1 / -1;
+  padding: 40px;
+}
+
+.document-card.selected {
+  background-color: #1e4a9a;
+  color: white;
+}
+
+.document-card.selected .card-title {
+  color: white;
+}
+
+.document-card.selected .card-category {
+  background: white;
+  color: #1e4a9a;
+}
+
+.document-card.selected .card-date {
+  color: #d1d5db; /* gris claro para contraste suave */
+}
+
+.document-card.selected .card-download-btn {
+  color: white;
+}
+
+.document-card.selected .card-download-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.document-card.selected .card-download-btn:disabled {
+  color: #cbd5e1;
+  background: transparent;
+}
+
+.view-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Contenedor de filtros - fondo muy claro y bordes sutiles */
+.filtros-mostrados {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #5f6368; /* Gris suave tipo Google */
+  background-color: transparent;
+  padding: 6px 12px;
+  border-radius: 24px;
+  align-items: center;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Ocultar scrollbar en Chrome, Edge, Safari */
+.filtros-mostrados::-webkit-scrollbar {
+  display: none;
+}
+
+/* Cada filtro individual */
+.filtros-mostrados span {
+  background-color: white; /* Gris muy claro */
+  color: #3c4043;
+  border: 1px solid #dadce0;
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-weight: 400;
+  white-space: nowrap;
+  box-shadow: none;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+/* Hover para filtro */
+.filtros-mostrados span:hover {
+  background-color: transparent; /* Azul claro */
+  color: #1e4a9a;
+  cursor: default;
+}
+
+/* Botón para remover filtro (X) */
+.btn-remove-filtro {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #5f6368;
+  margin-left: 8px;
+  font-size: 14px;
+  line-height: 1;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.btn-remove-filtro:hover {
+  color: #d93025; /* Rojo Google para acción */
+}
+
+/* Para un layout responsivo en filtros */
+@media (max-width: 600px) {
+  .filtros-mostrados {
+    gap: 8px;
+    padding: 4px 8px;
+  }
+  
+  .filtros-mostrados span {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+  }
+}

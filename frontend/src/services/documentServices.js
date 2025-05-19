@@ -1,5 +1,8 @@
 import Cookies from "js-cookie";
 
+// Usa la variable de entorno del .env
+const API_URL = import.meta.env.VITE_API_URL + "/api";
+
 const uploadDocument = async ({
   file,
   rubro,
@@ -17,7 +20,7 @@ const uploadDocument = async ({
     formData.append("propiedadesnombre", JSON.stringify(propiedadesNombre));
     formData.append("propiedades", JSON.stringify(propiedades));
 
-    const response = await fetch("http://localhost:5000/api/documents/upload", {
+    const response = await fetch(`${API_URL}/documents/upload`, {
       method: "POST",
       headers: {
         Authorization: token,
@@ -42,7 +45,7 @@ const getAllDocuments = async () => {
   try {
     const token = Cookies.get("token");
 
-    const response = await fetch("http://localhost:5000/api/documents", {
+    const response = await fetch(`${API_URL}/documents`, {
       method: "GET",
       headers: {
         Authorization: token,
@@ -66,7 +69,7 @@ const downloadDocument = async (id) => {
   try {
     const token = Cookies.get("token");
 
-    const response = await fetch(`http://localhost:5000/api/cats/download/${id}`, {
+    const response = await fetch(`${API_URL}/cats/download/${id}`, {
       method: "GET",
       headers: {
         Authorization: token,
@@ -92,7 +95,7 @@ const getDocumentByID = async (id) => {
   try {
     const token = Cookies.get("token");
 
-    const response = await fetch(`http://localhost:5000/api/documents/${id}`, {
+    const response = await fetch(`${API_URL}/documents/${id}`, {
       method: "GET",
       headers: {
         Authorization: token,
@@ -131,7 +134,7 @@ const updateDocument = async ({
     if (propiedadesNombre) formData.append("propiedadesnombre", JSON.stringify(propiedadesNombre));
     if (propiedades) formData.append("propiedades", JSON.stringify(propiedades));
 
-    const response = await fetch(`http://localhost:5000/api/documents/update/${id}`, {
+    const response = await fetch(`${API_URL}/documents/update/${id}`, {
       method: "PUT",
       headers: {
         Authorization: token,
@@ -168,7 +171,7 @@ const deleteDocument = async (id) => {
     // Log para debugging
     console.log('Intentando eliminar documento:', { id, token });
 
-    const response = await fetch(`http://localhost:5000/api/documents/delete/${id}`, {
+    const response = await fetch(`${API_URL}/documents/delete/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: token,
@@ -201,7 +204,7 @@ const deleteDocument = async (id) => {
   }
 };
 
-const searchDocuments = async ({ rubro, propiedades, ciclo, startDate,endDate }) => {
+const searchDocuments = async ({ rubro, propiedades, ciclo, startDate, endDate }) => {
   try {
     const token = Cookies.get("token");
 
@@ -214,7 +217,7 @@ const searchDocuments = async ({ rubro, propiedades, ciclo, startDate,endDate })
     if (endDate) params.append("endDate", endDate); 
   
 
-    const response = await fetch(`http://localhost:5000/api/documents/?${params.toString()}`, {
+    const response = await fetch(`${API_URL}/documents/?${params.toString()}`, {
       method: "GET",
       headers: {
         Authorization: token,
